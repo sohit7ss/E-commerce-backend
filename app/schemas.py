@@ -36,10 +36,17 @@ class ProductUpdate(BaseModel):
     
 
     
+# class ProductOut(ProductBase):
+#     # what does the *response* have that the input never had?
+#     id: int
+#     UpdatedAt : datetime        this cause an error due to updatedat is null in stariting
+#     CreatedAt : datetime   
+#     model_config = {"from_attributes": True}
+#     # createdAt / updatedAt go here if you want to expose them — who sets them?
+#     ...
+
 class ProductOut(ProductBase):
-    # what does the *response* have that the input never had?
     id: int
-    UpdatedAt : datetime
-    CreatedAt : datetime
-    # createdAt / updatedAt go here if you want to expose them — who sets them?
-    ...
+    CreatedAt: datetime
+    UpdatedAt: Optional[datetime] = None
+    model_config = {"from_attributes": True}

@@ -3,3 +3,5 @@ ecommerce-backend-roadmap.md
 test.drawio
 phase 0 .png
 notes
+__pycache__/
+*.pyc
