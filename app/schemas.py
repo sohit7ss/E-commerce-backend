@@ -50,3 +50,23 @@ class ProductOut(ProductBase):
     CreatedAt: datetime
     UpdatedAt: Optional[datetime] = None
     model_config = {"from_attributes": True}
+
+
+class CategoryBase(BaseModel):
+    Name : str
+
+class CategoryCreate(CategoryBase):
+    pass
+
+class CategoryUpdate(BaseModel):
+    Name: Optional[str] = None
+    
+    
+
+class CategoryOut(CategoryBase):
+    id : int
+    # Name: Optional[str] = None
+    CreatedAt : datetime
+
+    model_config = {"from_attributes" : True}
+
