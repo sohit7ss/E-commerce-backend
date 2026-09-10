@@ -70,3 +70,50 @@ class CategoryOut(CategoryBase):
 
     model_config = {"from_attributes" : True}
 
+
+
+class Token(BaseModel):
+    access_token : str
+    token_type : str
+
+class UserLogin(BaseModel):
+    Email : EmailStr
+    Password: str
+
+
+class TokenData(BaseModel):
+    id : Optional[int] = None
+
+
+class UserCreate(BaseModel):
+    Name : str
+    Email : EmailStr
+    Password : str
+
+
+class UserOut(BaseModel):
+    id: int
+    Name: str
+    Email: EmailStr
+    Role: str
+    created_at: datetime
+
+    model_config = {"from_attributes": True}
+
+
+
+class CartItemBase(BaseModel):
+    
+    ProductID : int
+    Quantity : int
+
+class CartItemCreate(CartItemBase):
+    pass
+
+
+
+class CartItemOut(CartItemBase):
+    id : int
+    UserID : int
+
+    model_config = {"from_attributes" : True}
