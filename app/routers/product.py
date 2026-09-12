@@ -4,8 +4,7 @@ from fastapi import Response , status, HTTPException, Depends, APIRouter
 from sqlalchemy.orm import Session
 from ..database import get_db
 from .. import models, schemas, oauth2
-from typing import List
-
+from typing import List, Optional
 
 
 router = APIRouter(
@@ -15,8 +14,11 @@ router = APIRouter(
 
 
 @router.get("/", status_code=status.HTTP_200_OK, response_model=List[schemas.ProductOut])
-def get_all_product(db: Session = Depends(get_db)):
-    products = db.query(models.Products).all()
+def get_all_product(db: Session = Depends(get_db), limit: int = 10, skip: int = 0, search: Optional[str] = ""):
+    products = db.query(models.Products).filter(
+        models.Products.Name.contains(search)
+    ).offset(skip).limit(limit).all()
+
     return products
 
 
