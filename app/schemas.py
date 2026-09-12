@@ -1,7 +1,7 @@
 from pydantic import BaseModel, EmailStr, Field
 from decimal import Decimal
 from datetime import datetime
-from typing import Literal
+from typing import Literal, List
 from datetime import datetime
 from typing import Optional
 
@@ -117,3 +117,24 @@ class CartItemOut(CartItemBase):
     UserID : int
 
     model_config = {"from_attributes" : True}
+
+
+class OrderItemOut(BaseModel):
+    id : int
+    OrderID : int
+    ProductID : int
+    Quantity : int
+    PurchasePrice : Decimal
+
+    model_config = {"from_attributes" : True}
+    
+class OrderOut(BaseModel):
+    id : int
+    UserID : int
+    TotalAmount : Decimal
+    OrderStatus : str
+    CreatedAt : datetime
+    order_items: List[OrderItemOut]   # <- a list of OrderItemOut objects, nested inside
+
+    model_config = {"from_attributes" : True}
+
