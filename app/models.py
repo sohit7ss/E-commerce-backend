@@ -20,6 +20,7 @@ class Products(Base):
     CreatedAt = Column(TIMESTAMP(timezone = True), 
                         nullable = False, server_default=text('now()'))
     UpdatedAt = Column(TIMESTAMP(timezone = True))
+    Weight = Column(DECIMAL, nullable=True)
 
     category = relationship("Categories", back_populates="products") #.............................
     cart_items = relationship("CartItems", back_populates="product")
@@ -82,8 +83,8 @@ class Orders(Base):
     OrderStatus = Column(String, nullable=False, default="Pending")
     CreatedAt = Column(TIMESTAMP(timezone=True), nullable=False, server_default = text('now()'))
 
-    # user_order = relationship("User", back_populates="orders")
-    user = relationship("User", back_populates="orders") #--------------
+
+    user = relationship("User", back_populates="orders") 
     order_items = relationship("OrderItem", back_populates="order")
 
 
